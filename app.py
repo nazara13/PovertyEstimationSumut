@@ -350,8 +350,8 @@ elif menu == "Proyeksi Kemiskinan 2030":
             "Proyeksi 2030 (Skenario)": "{:.2f}%",
             "Delta (%)": "{:.2f}%"
         }), use_container_width=True)
-    else:
-        st.error("Model Machine Learning belum dilatih secara penuh. Harap validasi model kembali.")
+    except Exception as e:
+        st.error(f"Gagal memuat model algoritma ({selected_algo}). Harap pastikan model .pkl atau .json tersedia di output/. Error: {e}")
 
 # ==========================================
 # MENU 5: METODOLOGI & DATA
