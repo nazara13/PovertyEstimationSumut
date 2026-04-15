@@ -103,7 +103,7 @@ st.sidebar.markdown(
     """
     <div style='text-align: center; color: #8395a7; font-size: 13px; margin-top: 20px;'>
         <i>Dikembangkan oleh:</i><br>
-        <b style='color: #c8d6e5; font-size: 15px;'>Nazara</b><br>
+        <b style='color: #c8d6e5; font-size: 15px;'>Krisman Yusuf Nazara</b><br>
         <span style='font-size: 11px;'>Poverty Spatial Estimation © 2025</span>
     </div>
     """, unsafe_allow_html=True
