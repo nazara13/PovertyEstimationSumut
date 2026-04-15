@@ -191,12 +191,30 @@ def create_interactive_map(gdf_merged: gpd.GeoDataFrame, col_of_interest: str, l
         ),
     ).add_to(m)
 
-    colormap.add_to(m)
+    # colormap.add_to(m) -> Sengaja dinonaktifkan agar diganti Legenda Custom di Kiri Bawah
     Fullscreen().add_to(m)
     MiniMap(toggle_display=True).add_to(m)
     
     # 🌟 Aktifkan panel pilihan Base Map / Layer
     folium.LayerControl(position="topright", collapsed=False).add_to(m)
+
+    # Legenda Peta (Custom Fixed Bottom Left)
+    legend_html = f"""
+        <div style="position: absolute; 
+                    bottom: 30px; left: 30px; 
+                    z-index: 9999; background-color: rgba(30, 30, 47, 0.90); 
+                    padding: 12px 18px; border-radius: 8px; border: 1px solid #4a4a6a;
+                    color: white; font-family: 'Helvetica Neue', Arial, sans-serif;
+                    font-size: 13px; line-height: 1.6; box-shadow: 0px 4px 6px rgba(0,0,0,0.3);">
+            <b style="font-size: 14px; color: #f1c40f;">Tingkat Kemiskinan (%)</b><br>
+            <i style="background: {POVERTY_COLORMAP[0]}; width: 15px; height: 15px; float: left; margin-right: 10px; margin-top: 3px; border-radius: 3px;"></i> &lt; 5% (Sangat Rendah)<br>
+            <i style="background: {POVERTY_COLORMAP[1]}; width: 15px; height: 15px; float: left; margin-right: 10px; margin-top: 3px; border-radius: 3px;"></i> 5% &mdash; 10%<br>
+            <i style="background: {POVERTY_COLORMAP[2]}; width: 15px; height: 15px; float: left; margin-right: 10px; margin-top: 3px; border-radius: 3px;"></i> 10% &mdash; 15%<br>
+            <i style="background: {POVERTY_COLORMAP[3]}; width: 15px; height: 15px; float: left; margin-right: 10px; margin-top: 3px; border-radius: 3px;"></i> 15% &mdash; 20%<br>
+            <i style="background: {POVERTY_COLORMAP[4]}; width: 15px; height: 15px; float: left; margin-right: 10px; margin-top: 3px; border-radius: 3px;"></i> &gt; 20% (Sangat Tinggi)<br>
+        </div>
+        """
+    m.get_root().html.add_child(folium.Element(legend_html))
 
     # Judul peta
     title_html = f"""
