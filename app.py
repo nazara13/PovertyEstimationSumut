@@ -295,13 +295,15 @@ elif menu == "Proyeksi Kemiskinan 2030":
     # --- Eksekusi Prediksi XGBoost ---
     xgb_model_path = os.path.join("output", "model_xgb.json")
     if os.path.exists(xgb_model_path):
-        model = xgb.XGBRegressor()
-        model.load_model(xgb_model_path)
+        # Gunakan booster native agar tidak crash di environment Streamlit Linux
+        booster = xgb.Booster()
+        booster.load_model(xgb_model_path)
         
         feature_cols = ["mean_ndvi","std_ndvi","mean_ndbi","log_ntl","std_ntl","ntl_cv","urban_pct","agri_pct","tree_pct","urban_ratio","agri_ratio","wealth_proxy"]
         available_cols = [c for c in feature_cols if c in future_X.columns]
         
-        preds_2030 = model.predict(future_X[available_cols].values)
+        dmatrix = xgb.DMatrix(future_X[available_cols].values, feature_names=available_cols)
+        preds_2030 = booster.predict(dmatrix)
         
         sim_df = pd.DataFrame({
             "Kabupaten/Kota": preds_df["kabupaten"],
