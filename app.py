@@ -158,7 +158,7 @@ if menu == "Pemetaan Interaktif":
                 "Aktual BPS (%)": "{:.2f}%", 
                 f"Prediksi {selected_algo} (%)": "{:.2f}%",
                 "Selisih/Error": "{:+.2f}"
-            }).background_gradient(subset=["Selisih/Error"], cmap="coolwarm"),
+            }),
             use_container_width=True
         )
     else:
@@ -323,7 +323,7 @@ elif menu == "Proyeksi Kemiskinan 2030":
             "Kemiskinan 2025 (Aktual)": "{:.2f}%", 
             "Proyeksi 2030 (Skenario)": "{:.2f}%",
             "Delta (%)": "{:.2f}%"
-        }).background_gradient(subset=["Proyeksi 2030 (Skenario)"], cmap="YlOrRd"), use_container_width=True)
+        }), use_container_width=True)
     else:
         st.error("Model Machine Learning belum dilatih secara penuh. Harap validasi model kembali.")
 
