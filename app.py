@@ -292,19 +292,31 @@ elif menu == "Proyeksi Kemiskinan 2030":
     if "tree_pct" in future_X.columns: future_X["tree_pct"] *= green_mult
     if "wealth_proxy" in future_X.columns: future_X["wealth_proxy"] *= (ntl_mult * green_mult)
     
-    # --- Eksekusi Prediksi XGBoost ---
-    xgb_model_path = os.path.join("output", "model_xgb.json")
-    if os.path.exists(xgb_model_path):
-        # Gunakan booster native agar tidak crash di environment Streamlit Linux
-        booster = xgb.Booster()
-        booster.load_model(xgb_model_path)
-        
-        feature_cols = ["mean_ndvi","std_ndvi","mean_ndbi","log_ntl","std_ntl","ntl_cv","urban_pct","agri_pct","tree_pct","urban_ratio","agri_ratio","wealth_proxy"]
-        available_cols = [c for c in feature_cols if c in future_X.columns]
-        
-        dmatrix = xgb.DMatrix(future_X[available_cols].values, feature_names=available_cols)
-        preds_2030 = booster.predict(dmatrix)
-        
+    # --- Eksekusi Prediksi Dinamis Mengikuti Algoritma Terpilih ---
+    import joblib
+    
+    feature_cols = ["mean_ndvi","std_ndvi","mean_ndbi","log_ntl","std_ntl","ntl_cv","urban_pct","agri_pct","tree_pct","urban_ratio","agri_ratio","wealth_proxy"]
+    available_cols = [c for c in feature_cols if c in future_X.columns]
+    
+    try:
+        if selected_algo == "XGBoost":
+            xgb_model_path = os.path.join("output", "model_xgb.json")
+            booster = xgb.Booster()
+            booster.load_model(xgb_model_path)
+            dmatrix = xgb.DMatrix(future_X[available_cols].values, feature_names=available_cols)
+            preds_2030 = booster.predict(dmatrix)
+        else:
+            # Memuat model Scikit-Learn / LightGBM dari format .pkl
+            if selected_algo == "LightGBM":
+                model_path = os.path.join("output", "model_lgbm.pkl")
+            elif selected_algo == "Gradient Boosting":
+                model_path = os.path.join("output", "model_gbr.pkl")
+            else:
+                model_path = os.path.join("output", "model_rf.pkl")
+                
+            model = joblib.load(model_path)
+            preds_2030 = model.predict(future_X[available_cols].values)
+
         sim_df = pd.DataFrame({
             "Kabupaten/Kota": preds_df["kabupaten"],
             "Kemiskinan 2025 (Aktual)": preds_df["poverty_rate"],
