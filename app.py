@@ -384,3 +384,5 @@ elif menu == "Metodologi & Informasi Data":
         - **LightGBM:** Berbasis *histogram-based gradient boosting* yang luar biasa cepat dan efisien terhadap data bergeometri rumit.
     3. **Skenario Proyeksi (Forecasting 2030):** Memanfaatkan metodologi *Scenario-based Policy Making*. Fitur masa depan disintesis menggunakan rumus **Compound Annual Growth Rate (CAGR)**: $V_n = V_0 (1 + r)^t$ di mana laju urbanisasi, pertumbuhan malam (NTL), dan deforestasi dikalkulasi, untuk kemudian '*diinjeksi*' ulang ke dalam model regresi Machine Learning (XGBoost) guna memprediksi potret kemiskinan di 2030.
     ''')
+#   T r i g g e r   w e b h o o k  
+ 
