@@ -1,45 +1,11 @@
 # ================================================================
 # Poverty Estimation - Sumatera Utara
-# Requirements File
+# Minimal Deployment Requirements (Streamlit Cloud Only)
 # ================================================================
 
-# --- Google Earth Engine ---
-earthengine-api
-geemap
-
-# --- Spatial & GIS ---
-geopandas
-shapely
-pyproj
-fiona
-rasterio
-
-# --- Data Processing ---
+streamlit==1.31.0
 pandas
 numpy
-scipy
-
-# --- Machine Learning ---
-scikit-learn
 xgboost
-lightgbm
-joblib
-
-# --- Visualization & Deployment ---
-streamlit
-matplotlib
-seaborn
 plotly
-folium
-mapclassify
-
-# --- Notebook ---
-jupyter
-jupyterlab
-ipykernel
-ipywidgets
-
-# --- Utilities ---
-tqdm
-python-dotenv
-openpyxl
+scikit-learn
