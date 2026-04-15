@@ -1,0 +1,51 @@
+# ── Python ────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ── Jupyter ───────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb~
+
+# ── Data (jangan commit data sensitif / besar) ────────────────
+data/raw/*.xlsx
+data/raw/*.csv
+
+# KELONGGARAN DEPLOYMENT STREAMLIT: Izinkan data olahan (1 MB) untuk UI
+!data/processed/merged_features.csv
+
+# ── Output ─────────────────
+# Izinkan artifact model, gambar, file html peta dan prediksi ke Git,
+# supaya Streamlit App jalan di Cloud tanpa perlu train ulang GEE
+!output/
+
+# ── Google Earth Engine ───────────────────────────────────────
+.config/
+credentials.json
+service_account_key.json
+
+# ── Environment ───────────────────────────────────────────────
+.env
+*.env.local
+*.env.*.local
+
+# ── IDE / OS ──────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini

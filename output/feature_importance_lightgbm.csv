@@ -1,0 +1,13 @@
+feature,importance
+mean_ndvi,0
+std_ndvi,0
+mean_ndbi,0
+log_ntl,0
+std_ntl,0
+ntl_cv,0
+urban_pct,0
+agri_pct,0
+tree_pct,0
+urban_ratio,0
+agri_ratio,0
+wealth_proxy,0

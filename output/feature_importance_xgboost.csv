@@ -1,0 +1,13 @@
+feature,importance
+urban_ratio,0.47260058
+urban_pct,0.12819959
+std_ndvi,0.073419444
+log_ntl,0.06833808
+agri_ratio,0.06469766
+std_ntl,0.0628704
+agri_pct,0.05404422
+mean_ndbi,0.033441085
+mean_ndvi,0.013544182
+wealth_proxy,0.011418057
+ntl_cv,0.009536046
+tree_pct,0.007890733

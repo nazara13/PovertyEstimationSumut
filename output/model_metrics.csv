@@ -1,0 +1,5 @@
+Model Algorithm,R2 Score,RMSE (Root Mean Sq Error),MSE (Mean Sq Error),MAE (Mean Abs Error),Train R2 (Overfit Check)
+Random Forest,-0.8,3.2516,12.1076,2.4365,0.7694
+XGBoost,-2.1229,4.015,18.567,3.0731,1.0
+LightGBM,-0.5,4.0386,18.0672,3.0818,-0.0
+Gradient Boosting,-1.3276,4.1756,19.0644,3.1728,1.0
