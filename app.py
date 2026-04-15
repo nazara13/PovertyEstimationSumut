@@ -283,13 +283,13 @@ elif menu == "Proyeksi Kemiskinan 2030":
     
     future_X = feats_df.copy()
     
-    # Modifikasi Fitur sesuai masa depan
+    # Modifikasi Fitur sesuai masa depan dengan penjagaan batasan matematis (Clipping)
     if "log_ntl" in future_X.columns: future_X["log_ntl"] *= ntl_mult
-    if "mean_ndbi" in future_X.columns: future_X["mean_ndbi"] *= urban_mult
-    if "urban_pct" in future_X.columns: future_X["urban_pct"] *= urban_mult
+    if "mean_ndbi" in future_X.columns: future_X["mean_ndbi"] = np.clip(future_X["mean_ndbi"] * urban_mult, -1.0, 1.0)
+    if "urban_pct" in future_X.columns: future_X["urban_pct"] = np.clip(future_X["urban_pct"] * urban_mult, 0.0, 1.0)
     if "urban_ratio" in future_X.columns: future_X["urban_ratio"] *= urban_mult
-    if "mean_ndvi" in future_X.columns: future_X["mean_ndvi"] *= green_mult
-    if "tree_pct" in future_X.columns: future_X["tree_pct"] *= green_mult
+    if "mean_ndvi" in future_X.columns: future_X["mean_ndvi"] = np.clip(future_X["mean_ndvi"] * green_mult, -1.0, 1.0)
+    if "tree_pct" in future_X.columns: future_X["tree_pct"] = np.clip(future_X["tree_pct"] * green_mult, 0.0, 1.0)
     if "wealth_proxy" in future_X.columns: future_X["wealth_proxy"] *= (ntl_mult * green_mult)
     
     # --- Eksekusi Prediksi Dinamis Mengikuti Algoritma Terpilih ---
