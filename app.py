@@ -328,12 +328,26 @@ elif menu == "Proyeksi Kemiskinan 2030":
         m_30 = sim_df["Proyeksi 2030 (Skenario)"].mean()
         delta_m = m_30 - m_25
         
+        # Logika Dinamis untuk Teks Kenaikan/Penurunan Kemiskinan
+        if delta_m > 0:
+            delta_color = "#e74c3c"  # Merah (Buruk)
+            delta_arrow = "↑"
+            delta_text = "Kenaikan Kemiskinan"
+        elif delta_m < 0:
+            delta_color = "#2ecc71"  # Hijau (Bagus)
+            delta_arrow = "↓"
+            delta_text = "Penurunan Kemiskinan"
+        else:
+            delta_color = "#95a5a6"  # Abu-abu (Stagnan)
+            delta_arrow = "⟷"
+            delta_text = "Kemiskinan Stagnan"
+            
         st.markdown("---")
         mcol1, mcol2 = st.columns(2)
         with mcol1:
             st.markdown(f"<div class='metric-card'><div class='metric-label'>Rata-rata 2025</div><div class='metric-value'>{m_25:.2f}%</div></div>", unsafe_allow_html=True)
         with mcol2:
-            st.markdown(f"<div class='metric-card'><div class='metric-label'>Proyeksi 2030</div><div class='metric-value'>{m_30:.2f}%</div><div style='color:#2ecc71; font-weight:bold;'>↓ {abs(delta_m):.2f}% Penurunan Kemiskinan</div></div>", unsafe_allow_html=True)
+            st.markdown(f"<div class='metric-card'><div class='metric-label'>Proyeksi 2030</div><div class='metric-value'>{m_30:.2f}%</div><div style='color:{delta_color}; font-weight:bold;'>{delta_arrow} {abs(delta_m):.2f}% {delta_text}</div></div>", unsafe_allow_html=True)
             
         st.write("")
         
