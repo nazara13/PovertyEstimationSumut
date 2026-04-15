@@ -1,11 +1,6 @@
-# ================================================================
-# Poverty Estimation - Sumatera Utara
-# Minimal Deployment Requirements (Streamlit Cloud Only)
-# ================================================================
-
-streamlit==1.31.0
+streamlit
 pandas
 numpy
-xgboost
+xgboost==2.0.2
 plotly
 scikit-learn
